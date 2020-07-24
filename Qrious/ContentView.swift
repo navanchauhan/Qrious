@@ -47,11 +47,14 @@ class FetchToDo: ObservableObject {
             }
         }.resume()
     }
-    func fetchAgain(q: String = "Hepatitis+B+Virus+Silico",p: String = "10",limit: Bool = false) {
+    func fetchAgain(q: String = "Hepatitis+B+Virus+Silico",p: String = "10",limit: Bool = false, prepints: Bool = false) {
         var s = "https://api.figshare.com/v2/articles/search?search_for=\(q.replacingOccurrences(of: " ", with: "+"))&page_size=\(p)"
         //var request = URLRequest(url: URL(string: "https://api.figshare.com/v2/articles/search?search_for=\(q)&page_size=\(p)")!)
         if limit {
             s += "&group=13668"
+        }
+        if prepints {
+            s += "&item_type=12"
         }
         print(s, limit)
         var request = URLRequest(url: URL(string: s)!)
@@ -114,6 +117,7 @@ struct ContentView: View {
     @State private var ques: String = configuration().question
     //"Results show what top compounds?"
     @State public var LimitToChemrxiv: Bool = false
+    @State private var LimitToPreprints: Bool = false
     @ObservedObject var fetch = FetchToDo()
     //let bert = BERTQAFP16()
     var body: some View {
@@ -150,6 +154,11 @@ struct ContentView: View {
                                     Text("Limit to ChemRxiv")
                                 }
                             }
+                            HStack{
+                                Toggle(isOn: $LimitToPreprints){
+                                    Text("Limit to Preprints")
+                                }
+                            }
                         }
                     }
                         
@@ -160,7 +169,7 @@ struct ContentView: View {
                         
                     
                     Section{
-                        Button(action: {self.fetch.fetchAgain(q: self.query, p: String(self.noOfArticles), limit: self.LimitToChemrxiv)}){
+                        Button(action: {self.fetch.fetchAgain(q: self.query, p: String(self.noOfArticles), limit: self.LimitToChemrxiv, prepints: self.LimitToPreprints)}){
                             Text("Get Papers")
                         }
                     }
