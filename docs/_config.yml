@@ -12,7 +12,7 @@ presskit_download_link                    : https://emilbaehr.com               
 app_icon                                  : assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  : Qrious                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : Write a short tagline for your app.
+app_description                           : Modern App To Assist Your Research
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -24,7 +24,7 @@ your_link                                 : https://navanchauhan.github.io
 your_city                                 : New Delhi                                
 email_address                             : navanchauhan@gmail.com
 facebook_username                         :                                           
-instagram_username                        : navanchauhan
+instagram_username                        : #navanchauhan
 twitter_username                          : navanchauhan
 github_username                           : navanchauhan
 youtube_username                          :
@@ -34,8 +34,8 @@ youtube_username                          :
 # Feature List                            Edit, add or remove features to be presented.
 features                                  :
 
-  - title                                 : GitHub Pages Jekyll Theme
-    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
+  - title                                 : Modern Design
+    description                           : Written in SwiftUI!
     fontawesome_icon_name                 : magic
     
   - title                                 : iPhone Device Preview
