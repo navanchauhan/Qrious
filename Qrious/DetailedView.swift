@@ -10,25 +10,6 @@
 import SwiftUI
 
 
-extension String {
-    public var withoutHtml: String {
-        guard let data = self.data(using: .utf8) else {
-            return self
-        }
-
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ]
-
-        guard let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) else {
-            return self
-        }
-
-        return attributedString.string
-    }
-}
-
 struct DetailedView: View {
     //public var description: String
     //@State public var defined_type_name: String = "p"
@@ -84,7 +65,7 @@ struct DetailedView: View {
                 Button("Paper URL") {
                     UIApplication.shared.open(URL(string: self.paperURL)!)
                 }
-                Text("Possible Candidates")
+                Text(self.config.question)
                     .font(.headline)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
@@ -94,7 +75,7 @@ struct DetailedView: View {
                     .fontWeight(.semibold)
                 ScrollView(.vertical){
                     VStack{
-                        Text(description1)
+                        Text((description1.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)).replacingOccurrences(of: "&[^;]+;", with: "", options: String.CompareOptions.regularExpression, range: nil))
                         //Text(description1.withoutHtml)
                     }
                     .frame(maxWidth: .infinity)
