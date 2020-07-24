@@ -81,6 +81,25 @@ extension UIApplication {
     }
 }
 
+struct ClearButton: ViewModifier
+{
+    @Binding var text: String
+    public func body(content: Content) -> some View{
+        ZStack(alignment: .trailing){
+            content
+            if !text.isEmpty{
+                Button(action:{
+                    self.text = ""
+                }){
+                    Image(systemName: "delete.left")
+                        .foregroundColor(Color(UIColor.opaqueSeparator))
+                }
+                .padding(.trailing, 8)
+            }
+        }
+    }
+}
+
 class configuration: ObservableObject {
     @Published var question: String = "Results show what are the compounds?"
 }
@@ -114,7 +133,7 @@ struct ContentView: View {
                 Form{
                     
                     Section(header: Text("Search Query")){
-                            TextField("Search Query",text: $query)
+                            TextField("Search Query",text: $query).modifier(ClearButton(text: $query))
                     }
                     
                     
@@ -123,6 +142,7 @@ struct ContentView: View {
                         HStack{
                             Text("No. Of Articles:")
                             TextField("No. Of Articles", text: $noOfArticles)
+                                .modifier(ClearButton(text: $noOfArticles))
                         .keyboardType(.numberPad)
                         }.disabled(!advance)
                             HStack{
@@ -134,7 +154,7 @@ struct ContentView: View {
                     }
                         
                         Section(header: Text("Query for AI Model")){
-                            TextField("",text: $ques, onEditingChanged: {_ in self.config.question = self.ques})
+                            TextField("",text: $ques, onEditingChanged: {_ in self.config.question = self.ques}).modifier(ClearButton(text: $ques))
                             
                         }
                         

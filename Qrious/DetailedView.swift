@@ -53,7 +53,7 @@ struct DetailedView: View {
                             self.description1 = decodedData["description"].string!
                             self.paperURL = decodedData["figshare_url"].string!
                             print("Finding Answer")
-                            self.candidates = String(BERT().findAnswer(for: configuration().question, in: self.description1))
+                            self.candidates = String(BERT().findAnswer(for: self.config.question, in: self.description1))
                             //return decodedData
                             
                            }
