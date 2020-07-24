@@ -78,7 +78,7 @@ struct DetailedView: View {
                     UIPasteboard.general.string = self.article.title
                 }) {
                     Text("Copy")
-                    Image(systemName: "copy")
+                    Image(systemName: "doc.on.doc")
                         }}
                 
                 Button("Paper URL") {
