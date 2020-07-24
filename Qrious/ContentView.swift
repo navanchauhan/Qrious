@@ -163,7 +163,7 @@ struct ContentView: View {
                     }
                         
                         Section(header: Text("Query for AI Model")){
-                            TextField("",text: $ques, onEditingChanged: {_ in self.config.question = self.ques}).modifier(ClearButton(text: $ques))
+                            TextField("Query for AI Model",text: $ques, onEditingChanged: {_ in self.config.question = self.ques}).modifier(ClearButton(text: $ques))
                             
                         }
                         
