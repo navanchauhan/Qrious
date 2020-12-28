@@ -169,7 +169,11 @@ struct ContentView: View {
                         
                     
                     Section{
-                        Button(action: {self.fetch.fetchAgain(q: self.query, p: String(self.noOfArticles), limit: self.LimitToChemrxiv, prepints: self.LimitToPreprints)}){
+                        Button(action: {
+                            self.fetch.fetchAgain(q: self.query, p: String(self.noOfArticles), limit: self.LimitToChemrxiv, prepints: self.LimitToPreprints)
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
+                        }){
                             Text("Get Papers")
                         }
                     }
